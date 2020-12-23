@@ -1,0 +1,158 @@
+<h1 class="w3-xxxlarge w3-text-gray"><b>Book Appointment.</b></h1>
+<hr style="width:50px;border:5px solid gray" class="w3-round">
+<h3 *ngIf="added" class="text-green">Application added.</h3>
+<h3 *ngIf="error" class="text-red">{{error}}</h3>
+<form [formGroup]="formData" (ngSubmit)="onClickSubmit(formData.value)">
+    <table>
+        <tr>
+            <td><label for="fname">First Name</label></td>
+            <td><input type="text" name="fname" formControlName="fname"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="text-danger" *ngIf="(formData.controls.fname.touched) && formData.controls.fname.errors?.required">
+                    First Name is required
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="lname">Last Name</label></td>
+            <td><input type="text" name="lname" formControlName="lname"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="text-danger" *ngIf="(formData.controls.lname.touched) && formData.controls.lname.errors?.required">
+                    Last Name is required
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="email">E-mail</label></td>
+            <td><input type="email" name="email" formControlName='email'></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="text-danger" *ngIf="(formData.controls.email.touched) && formData.controls.email.errors?.required">
+                    Email is required
+                </div>
+                <div class="text-danger" *ngIf="formData.controls.email.touched && formData.controls.email.errors?.email">
+                    Enter a valid email address
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="phone">Phone No</label></td>
+            <td><input type="tel" name="phone" placeholder="888 888 8888" formControlName="phone" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="text-danger" *ngIf="(formData.controls.phone.touched) && formData.controls.phone.errors?.required">
+                    Phone number is required
+                </div>
+                <div class="text-danger" *ngIf="(formData.controls.phone.touched) && formData.controls.phone.errors?.pattern">
+                    Enter 10 digit number
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="date">Appointment<br> Date</label></td>
+            <td><input type="date" name="date" min="2020-12-01" max="2020-12-31" formControlName="date"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="text-danger" *ngIf="(formData.controls.date.touched) && formData.controls.date.errors?.required">
+                    Pick a date
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="time">Appointment <br>Time</label></td>
+            <td><input type="time" name="time" min="09:00" max="22:00" formControlName="time">
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="text-danger" *ngIf="(formData.controls.time.touched) && formData.controls.time.errors?.required">
+                    Pick a time
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="specialist">Specialist:</label></td>
+            <td>
+                <select name="specialist" formControlName="specialist" (change)="onSplChange(formData.controls.specialist.value)">
+          <option disabled selected value> -- select an option -- </option>
+          <option value="Cardiologists">Cardiologists</option>
+        <option value="Dermatologists">Dermatologists</option>
+        <option value="Physician">Physician</option>
+        <option value="Pediatricians">Pediatricians</option>
+        <option value="Ophthalmologists">Ophthalmologists</option>
+        <option value="Neurologists">Neurologists</option>
+          </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <div class="text-danger" *ngIf="(formData.controls.specialist.touched) && formData.controls.specialist.errors?.required">
+                    Pick a specialist
+                </div>
+            </td>
+        </tr>
+        <tr *ngIf="formData.controls.specialist.touched">
+            <td><label for="doctor">Doctor:</label></td>
+            <td>
+                <select name="doctor" formControlName="doctor">
+                <option disabled selected value> -- select an option -- </option>
+                <option *ngFor="let doc of doctors" [ngValue]="doc.name">{{doc.name}}</option> 
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="text-danger" *ngIf="(formData.controls.doctor.touched) && formData.controls.doctor.errors?.required">
+                    Pick a doctor
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="insurance">Insurance info:</label></td>
+            <td>
+                <select name="insurance" formControlName="insurance">
+        <option disabled selected value> -- select availability -- </option>
+        <option value="YES">YES</option>
+        <option value="NO">NO</option>
+        </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="text-danger" *ngIf="(formData.controls.insurance.touched) && formData.controls.insurance.errors?.required">
+                    Pick an option
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="description">Description:</label></td>
+            <td><input type="tel" name="description" formControlName="description" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="text-danger" *ngIf="(formData.controls.description.touched) && formData.controls.description.errors?.required">
+                    A brief description is required
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <input type="submit" value="Book" [disabled]="!formData.valid" class="submit">
+</form>

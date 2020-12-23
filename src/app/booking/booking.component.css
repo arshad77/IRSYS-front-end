@@ -1,0 +1,18 @@
+td {
+    padding-left: 30px;
+}
+
+.submit {
+    margin-left: 100px;
+    margin-bottom: 50px;
+}
+
+.text-green {
+    color: green;
+    margin-left: 85px;
+}
+
+.text-red {
+    color: red;
+    margin-left: 85px;
+}

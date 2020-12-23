@@ -1,0 +1,111 @@
+<div *ngIf="!selected">
+    <h1 class="w3-xxxlarge w3-text-gray"><b>Confirm Appointments.</b></h1>
+    <hr style="width:50px;border:5px solid gray" class="w3-round">
+
+    <form [formGroup]="formData" (ngSubmit)="onClickSubmit(formData.value)">
+        <table>
+            <tr>
+                <th><label for="specialist">Department <br>Name</label></th>
+                <td>
+                    <select name="specialist" formControlName="specialist">
+                  <option disabled selected value> -- select a Department -- </option>
+                  <option value="Cardiologists">Cardiologists</option>
+                  <option value="Dermatologists">Dermatologists</option>
+                  <option value="Physician">Physician</option>
+                  <option value="Pediatricians">Pediatricians</option>
+                  <option value="Ophthalmologists">Ophthalmologists</option>
+                  <option value="Neurologists">Neurologists</option>
+                </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Get Appointments" [disabled]="!formData.valid">
+                </td>
+            </tr>
+        </table>
+        <h3 *ngIf="error" class="text-red">{{error}}</h3>
+    </form>
+
+    <div *ngIf="retrived">
+        <h1 class="w3-xxxlarge w3-text-gray"><b>{{dept}} Department.</b></h1>
+        <hr style="width:50px;border:5px solid gray" class="w3-round">
+        <table *ngFor="let item of result">
+            <tr>
+                <th>Name</th>
+                <td>{{item.fname}}</td>
+                <td>{{item.lname}}</td>
+                <th>Email</th>
+                <td>{{item.email}}</td>
+                <th>Mobile</th>
+                <td>{{item.phone}}</td>
+            </tr>
+            <tr>
+                <th>Appointment <br>Status</th>
+                <td>{{item.status}}</td>
+                <td></td>
+                <th>Appointment <br>Date</th>
+                <td>{{item.date}}</td>
+                <th>Appointment <br>Time</th>
+                <td>{{item.time}}</td>
+            </tr>
+            <tr>
+                <th>Consulting <br>Specialist</th>
+                <td>{{item.doctor}}</td>
+                <td></td>
+                <th>Insurance availble</th>
+                <td>{{item.insurance}}</td>
+                <th>Appointent <br>Description</th>
+                <td>{{item.description}}</td>
+            </tr>
+            <tr *ngIf="item.scan">
+                <th>Required Scans</th>
+                <td>{{item.scan}}</td>
+            </tr>
+            <tr *ngIf="item.status=='PENDING'">
+                <th>Update <br>Appointent <br>Status</th>
+                <td>
+                    <form [formGroup]="confirmForm" (ngSubmit)="onClickUpdate(item.aid)">
+                        <input type="submit" value="Update">
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="selected">
+    <h1 class="w3-xxxlarge w3-text-gray"><b>Update Appointment Status.</b></h1>
+    <hr style="width:50px;border:5px solid gray" class="w3-round">
+    <form [formGroup]="confirmForm" (ngSubmit)="onClickSave(confirmForm.value)">
+
+        <table>
+            <tr>
+                <th>Confirm or Cancel <br> Appointment</th>
+                <td>
+                    <select name="status" formControlName="status">
+        <option disabled selected value> --Select-- </option>
+        <option value="CONFIRM">Confirm</option>
+        <option value="CANCEL">Cancel</option>
+      </select>
+                </td>
+            </tr>
+            <tr *ngIf="confirmForm.controls.status.value=='CONFIRM'">
+                <th>
+                    Request Scans
+                </th>
+                <td><input type="text" name="scans" formControlName="scans"></td>
+            </tr>
+            <tr>
+                <th>Send status</th>
+                <td>
+                    <input type="submit" value="Send" [disabled]="!confirmForm.valid">
+
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</div>

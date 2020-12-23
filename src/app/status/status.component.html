@@ -1,0 +1,94 @@
+<h1 class="w3-xxxlarge w3-text-gray"><b>Check Appointment Status.</b></h1>
+<hr style="width:50px;border:5px solid gray" class="w3-round">
+
+<form [formGroup]="formData" (ngSubmit)="onClickSubmit(formData.value)">
+    <table>
+        <tr>
+            <td><label for="email">E-mail</label></td>
+            <td><input type="email" name="email" formControlName='email'></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="text-danger" *ngIf="(formData.controls.email.touched) && formData.controls.email.errors?.required">
+                    Email is required
+                </div>
+                <div class="text-danger" *ngIf="formData.controls.email.touched && formData.controls.email.errors?.email">
+                    Enter a valid email address
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="date">Appointment<br> Date</label></td>
+            <td><input type="date" name="date" min="2020-12-01" max="2020-12-31" formControlName="date"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="text-danger" *ngIf="(formData.controls.date.touched) && formData.controls.date.errors?.required">
+                    Pick a date
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Check Status" [disabled]="!formData.valid">
+            </td>
+        </tr>
+    </table>
+    <h3 *ngIf="error" class="text-red">{{error}}</h3>
+</form>
+<div *ngIf="retrived">
+    <h2 class="w3-xxxlarge w3-text-gray"><b>Your Appointment Status.</b></h2>
+    <hr style="width:50px;border:5px solid gray" class="w3-round">
+    <h3 *ngIf="result.status == 'CONFIRM'" class='confg'>Your Appointment is confirmed.</h3>
+    <h3 *ngIf="result.status == 'PENDING'" class='confy'>Your Appointment request is pending.</h3>
+    <h3 *ngIf="result.status == 'CANCEL'" class='confr'>Sorry,Your Appointment is cancelled. <br> Book a new appointment. </h3>
+
+    <table>
+        <tr>
+            <th>
+                Status
+            </th>
+            <td class="status">
+                {{result.status}}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Patient<br>Name
+            </th>
+            <td>
+                {{result.fname}}
+            </td>
+            <td>
+                {{result.lname}}
+            </td>
+        </tr>
+        <tr>
+            <th>Doctor<br>Name
+            </th>
+            <td>{{result.doctor}}</td>
+            <th>Department</th>
+            <td>{{result.specialist}}</td>
+        </tr>
+        <tr>
+            <th>
+                Appointment <br>Date
+            </th>
+            <td>
+                {{result.date}}
+            </td>
+            <th>
+                Appointment <br> Time
+            </th>
+            <td>
+                {{result.time}}
+            </td>
+        </tr>
+        <tr *ngIf="result.scan">
+            <th>Requested <br> Scan </th>
+            <td>{{result.scan}}</td>
+        </tr>
+    </table>
+</div>

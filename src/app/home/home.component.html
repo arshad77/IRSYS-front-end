@@ -1,0 +1,44 @@
+<h1 class="w3-xxxlarge w3-text-gray"><b>Home.</b></h1>
+<hr style="width:50px;border:5px solid gray" class="w3-round">
+
+<h2>Welcome to internal referral system.</h2>
+
+<p>A single place to book, track and manage all your appointments.</p>
+
+<div *ngIf="!currentUser">
+    <p>Login to use the functionalities.</p>
+
+    <ul>
+        <li>
+            <a routerLink='/login' routerLinkActive="active" class="w3-text-blue">Click here to login.</a>
+        </li>
+    </ul>
+</div>
+<div *ngIf="currentUser">
+    <div *ngIf="currentUser.role == 'admin'">
+        <h3>You are logged in as admin.</h3>
+    </div>
+
+    <div *ngIf="currentUser.role == 'insert'">
+        <h3>You are logged in as general physician.</h3>
+
+    </div>
+
+    <div *ngIf="currentUser.role == 'update'">
+        <h3>You are logged in as specialist.</h3>
+
+    </div>
+
+    <ul>
+        <li *ngIf="currentUser.role != 'update'">
+            <a routerLink='/book' routerLinkActive="active" class="w3-text-blue">Book a new appointment.</a>
+        </li>
+        <li *ngIf="currentUser.role != 'insert'">
+            <a routerLink='/confirm' routerLinkActive="active" class="w3-text-blue">Confirm appointments.</a>
+        </li>
+        <li>
+            <a routerLink='/status' routerLinkActive="active" class="w3-text-blue">Track your appointments.</a>
+        </li>
+
+    </ul>
+</div>
