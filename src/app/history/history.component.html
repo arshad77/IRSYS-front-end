@@ -1,0 +1,57 @@
+<h1 class="w3-xxxlarge w3-text-gray"><b>Patient Medical History.</b></h1>
+<hr style="width:50px;border:5px solid gray" class="w3-round">
+
+<form [formGroup]="formData" (ngSubmit)="onClickSubmit(formData.value)">
+    <table>
+        <tr>
+            <th>First Name: </th>
+            <td>
+                <input type="text" name="fname" formControlName="fname">
+            </td>
+            <td></td>
+            <th>Last Name: </th>
+            <td>
+                <input type="text" name="lname" formControlName="lname">
+            </td>
+        </tr>
+        <tr>
+            <th>Email: </th>
+            <td>
+                <input type="email" name="email" formControlName="email">
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Get Records" [disabled]="!formData.valid">
+    <br>
+</form>
+
+<div *ngIf="retrived">
+    <h1 class="w3-xxxlarge w3-text-gray"><b>{{userName}}'s Previous Records.</b></h1>
+    <hr style="width:50px;border:5px solid gray" class="w3-round">
+    <table>
+        <tr>
+            <th>Department</th>
+            <th>Consulted Doctor</th>
+            <th>Notes</th>
+            <th>Appointment <br>Date</th>
+            <th>Appointment <br>Time</th>
+            <th>Location</th>
+            <th>Appointent <br>Status</th>
+            <th>Insurance <br>avilability</th>
+            <th>Description</th>
+        </tr>
+        <tr *ngFor="let item of result">
+            <td>{{item.specialist}}</td>
+            <td>{{item.doctor}}</td>
+            <td>{{item.notes}}</td>
+            <td>{{item.date}}</td>
+            <td>{{item.time}}</td>
+            <td>{{item.location}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.insurance}}</td>
+            <td>{{item.description}}</td>
+        </tr>
+    </table>
+</div>

@@ -39,7 +39,6 @@ export class AuthenticationService {
   getDoctors(speciality,apikey){
     return this.http.post<any>('http://localhost:4000/users/doctors', {  apikey,speciality })
     .pipe(map(res => {
-      // login successful if there's a jwt token in the response
       return res;
   }));
   }
@@ -47,7 +46,6 @@ export class AuthenticationService {
   saveAppointment(appointment,apikey){
     return this.http.post<any>('http://localhost:4000/newAppointment', {appointment,apikey})
     .pipe(map(res => {
-      // login successful if there's a jwt token in the response
       return res;
   }));
   }
@@ -55,7 +53,6 @@ export class AuthenticationService {
   searchAppointment(appointment,apikey){
     return this.http.post<any>('http://localhost:4000/statusCheck', {appointment,apikey})
     .pipe(map(res => {
-      // login successful if there's a jwt token in the response
       return res;
   }));
   }
@@ -63,7 +60,6 @@ export class AuthenticationService {
   consultAppointment(appointment,apikey){
     return this.http.post<any>('http://localhost:4000/consult', {appointment,apikey})
     .pipe(map(res => {
-      // login successful if there's a jwt token in the response
       return res;
   }));
   }
@@ -71,7 +67,13 @@ export class AuthenticationService {
   updateAppointment(appointment,apikey){
     return this.http.post<any>('http://localhost:4000/updateStatus', {appointment,apikey})
     .pipe(map(res => {
-      // login successful if there's a jwt token in the response
+      return res;
+  }));
+  }
+
+  retriveHistory(appointment,apikey){
+    return this.http.post<any>('http://localhost:4000/history', {appointment,apikey})
+    .pipe(map(res => {
       return res;
   }));
   }

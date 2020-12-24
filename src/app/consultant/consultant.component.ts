@@ -31,6 +31,7 @@ export class ConsultantComponent implements OnInit {
     })
     this.confirmForm = new FormGroup({
       status : new FormControl("",[Validators.required]),
+      notes : new FormControl("",[Validators.required]),
       scans : new FormControl(""),
     })
   }
@@ -55,6 +56,7 @@ export class ConsultantComponent implements OnInit {
 
   onClickSave(data){
     data.aid = this.selectedValue
+    console.log(data)
     let apikey = this.currentUser.apikey;
     this.authenticationService.updateAppointment(data,apikey).pipe(first())
     .subscribe(
@@ -65,6 +67,7 @@ export class ConsultantComponent implements OnInit {
               Swal.fire('Success', 'Appointment status is updated!', 'success')
               this.confirmForm = new FormGroup({
                 status : new FormControl("",[Validators.required]),
+                notes : new FormControl("",[Validators.required]),
                 scans : new FormControl(""),
               })
             }

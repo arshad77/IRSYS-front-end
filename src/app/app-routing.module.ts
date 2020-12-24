@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auths/auth.guard';
 import { BookingComponent } from './booking/booking.component';
 import { ConsultantComponent } from './consultant/consultant.component';
+import { HistoryComponent } from './history/history.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { Role } from './models/role';
@@ -26,10 +27,16 @@ const routes: Routes = [
   data: { roles: [Role.Update,Role.Admin] } 
 },
 { 
+  path: 'history', 
+  component: HistoryComponent, 
+  canActivate: [AuthGuard], 
+  data: { roles: [Role.Update,Role.Admin,Role.Insert] } 
+},
+{ 
     path: 'book', 
     component: BookingComponent, 
     canActivate: [AuthGuard], 
-    data: { roles: [Role.Insert,,Role.Admin] } 
+    data: { roles: [Role.Insert,Role.Admin] } 
 },
 { 
   path: 'home', 

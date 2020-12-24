@@ -13,6 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { HomeComponent } from './home/home.component';
+import { HistoryComponent } from './history/history.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,8 @@ import { HomeComponent } from './home/home.component';
     BookingComponent,
     ConsultantComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

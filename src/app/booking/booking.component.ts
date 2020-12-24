@@ -42,11 +42,14 @@ export class BookingComponent implements OnInit {
       insurance : new FormControl("",[Validators.required]),
       specialist : new FormControl("",[Validators.required]),
       doctor : new FormControl("",[Validators.required]),
-      description : new FormControl("",Validators.required)
+      description : new FormControl("",Validators.required),
+      location : new FormControl("",Validators.required),
+      notes : new FormControl("",Validators.required)
     })
   }
 
   onClickSubmit(data){
+    
     data.status = 'PENDING';
     let newApplication:Application = data; 
     let apikey = this.currentUser.apikey;
@@ -66,7 +69,9 @@ export class BookingComponent implements OnInit {
               insurance : new FormControl("",[Validators.required]),
               specialist : new FormControl("",[Validators.required]),
               doctor : new FormControl("",[Validators.required]),
-              description : new FormControl("",Validators.required)
+              description : new FormControl("",Validators.required),
+              location : new FormControl("",Validators.required),
+              notes : new FormControl("",Validators.required)
             })
             }
         },

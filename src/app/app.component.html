@@ -30,6 +30,7 @@
         <a *ngIf="isAdmin||isInsert " routerLink="/book" routerLinkActive="active" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Book Appointments</a>
         <a routerLink="/status" routerLinkActive="active" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Track Appointment Status</a>
         <a *ngIf="isAdmin||isUpdate " routerLink="/confirm" routerLinkActive="active" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Confirm Appointments</a>
+        <a *ngIf="currentUser" routerLink="/history" routerLinkActive="active" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Medical History</a>
         <a *ngIf="currentUser" (click)="logout()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
     </div>
 </nav>

@@ -72,6 +72,13 @@
                     </form>
                 </td>
             </tr>
+            <tr>
+                <th *ngIf="item.location">Location</th>
+                <td *ngIf="item.location">{{item.location}}</td>
+                <td></td>
+                <th *ngIf="item.notes">Notes</th>
+                <td *ngIf="item.notes">{{item.notes}}</td>
+            </tr>
         </table>
     </div>
 </div>
@@ -97,6 +104,10 @@
                     Request Scans
                 </th>
                 <td><input type="text" name="scans" formControlName="scans"></td>
+            </tr>
+            <tr>
+                <th>Add Note:</th>
+                <td><input type="text" name="notes" formControlName="notes"></td>
             </tr>
             <tr>
                 <th>Send status</th>

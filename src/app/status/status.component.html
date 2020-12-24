@@ -86,6 +86,13 @@
                 {{result.time}}
             </td>
         </tr>
+        <tr>
+            <th *ngIf="result.location">Location</th>
+            <td *ngIf="result.location">{{result.location}}</td>
+            <th *ngIf="result.notes">Notes</th>
+            <td *ngIf="result.notes">{{result.notes}}</td>
+
+        </tr>
         <tr *ngIf="result.scan">
             <th>Requested <br> Scan </th>
             <td>{{result.scan}}</td>

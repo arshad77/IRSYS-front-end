@@ -29,6 +29,18 @@
             </td>
         </tr>
         <tr>
+            <td><label for="location">Location</label></td>
+            <td><input type="text" name="location" formControlName="location"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="text-danger" *ngIf="(formData.controls.location.touched) && formData.controls.location.errors?.required">
+                    Location is required
+                </div>
+            </td>
+        </tr>
+        <tr>
             <td><label for="email">E-mail</label></td>
             <td><input type="email" name="email" formControlName='email'></td>
         </tr>
@@ -119,6 +131,18 @@
             <td>
                 <div class="text-danger" *ngIf="(formData.controls.doctor.touched) && formData.controls.doctor.errors?.required">
                     Pick a doctor
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="notes">Note to specialist:</label></td>
+            <td><input type="text" name="notes" formControlName="notes"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="text-danger" *ngIf="(formData.controls.notes.touched) && formData.controls.notes.errors?.required">
+                    Notes is required
                 </div>
             </td>
         </tr>
